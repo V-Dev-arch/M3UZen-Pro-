@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" type="image/jpeg" href="https://files.catbox.moe/ov5pfv.png">
+<meta name="google-site-verification" content="eFSHsqjQ4sTzbKaWFenSl2_jcV535192T5CoYSbnAzg" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>M3UZen PRO - BY V-Dev-arch</title>
+  <meta name="description"
+    content="M3UZen PRO is a Powerfull free online tool to clean, modify, add or delete m3u playlist channels easily." />
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #120021;
+      color: white;
+      text-align: center;
+    }
+
+    header {
+      padding: 25px;
+      font-size: 30px;
+      font-weight: bold;
+      color: #00f7ff;
+      text-shadow: 0 0 15px rgba(0,247,255,0.7);
+    }
+
+    .subtitle {
+      font-size: 16px;
+      color: #ff2fd6;
+      margin-top: -15px;
+    }
+
+    .card {
+      background: rgba(255,255,255,0.06);
+      border-radius: 18px;
+      padding: 20px;
+      width: 90%;
+      max-width: 550px;
+      margin: auto;
+      box-shadow: 0 0 25px rgba(255,47,214,0.15);
+      position: relative;
+    }
+
+    input, button {
+      width: 90%;
+      padding: 12px;
+      margin: 10px 0;
+      border-radius: 12px;
+      border: none;
+      outline: none;
+      font-size: 15px;
+    }
+
+    button {
+      cursor: pointer;
+      background: linear-gradient(90deg,#ff2fd6,#00f7ff);
+      color: black;
+      font-weight: bold;
+    }
+
+    button:disabled {
+      opacity: 0.3;
+      cursor: not-allowed;
+    }
+
+    .hidden { display: none; }
+
+    /* Toast */
+    #toast {
+      position: fixed;
+      bottom: 15px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(0,0,0,0.85);
+      padding: 12px 18px;
+      border-radius: 12px;
+      font-size: 14px;
+      color: #39ff88;
+      display: none;
+      z-index: 999;
+      max-width: 400px;
+      text-align: left;
+    }
+
+    /* Back button */
+    .backBtn {
+      position: absolute;
+      top: 15px;
+      left: 15px;
+      width: auto;
+      padding: 8px 14px;
+      font-size: 14px;
+      border-radius: 10px;
+      background: rgba(255,255,255,0.15);
+      color: white;
+    }
+
+    /* Channel list */
+    .channelItem {
+      background: rgba(255,255,255,0.08);
+      padding: 12px;
+      margin: 8px;
+      border-radius: 12px;
+      cursor: pointer;
+      text-align: left;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      user-select: none;
+    }
+
+    .checkBox {
+      font-size: 18px;
+      width: 25px;
+    }
+
+    .selected {
+      border: 2px solid #ff3355;
+      background: rgba(255,51,85,0.25);
+    }
+
+    footer {
+      margin-top: 25px;
+      font-size: 14px;
+      opacity: 0.7;
+    }
+
+    a { color: #00f7ff; text-decoration: none; }
+
+    .summaryBox {
+      margin-top: 10px;
+      font-size: 14px;
+      color: #00f7ff;
+    }
+
+    /* Bin button top right */
+    #binBtn {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      width: 40px;
+      height: 40px;
+      font-size: 20px;
+      border-radius: 8px;
+    }
+  </style>
+</head>
+
+<body>
+
+<div id="toast"></div>
+
+<header>M3UZen PRO</header>
+<div class="subtitle">— BY V-Dev-arch —</div>
+
+<!-- HOME -->
+<div class="card" id="homeCard">
+  <p>
+    Load playlist → Add/Delete channels → Download instantly.<br><br>
+    ⚠️ URL playlists will convert into a file after modification.
+  </p>
+
+<p style="margin-top:10px; font-size:14px; color:#00f7ff;">
+  🔹 This tool allows you to load an M3U playlist from a URL or file.<br>
+  🔹 Add new channels or delete existing channels easily.<br>
+  🔹 Keep track of added and deleted channels before downloading.<br>
+  🔹 After modification, download your playlist and test it in the M3U Web Player.<br>
+  🔹 Pop-ups guide you through each step so you never lose your data.
+</p>
+
+  <input type="text" id="playlistURL" placeholder="Paste Playlist URL (optional)" />
+  <input type="file" id="playlistFile" accept=".m3u" />
+
+  <button id="loadBtn">Load Playlist</button>
+  <button id="readyBtn" class="hidden">Press this button to Modify</button>
+</div>
+
+<!-- MODIFY -->
+<div class="card hidden" id="modifyCard">
+  <button class="backBtn" onclick="location.reload()">⬅ Home</button>
+  <h2>Select Option</h2>
+  <button onclick="openAdd()">➕ Add Channels</button>
+  <button onclick="openDelete()">🗑 Delete Channels</button>
+</div>
+
+<!-- ADD -->
+<div class="card hidden" id="addCard">
+  <button class="backBtn" onclick="backModify()">⬅ Back</button>
+  <h2>Add Channel</h2>
+
+  <input id="chName" placeholder="Channel Name" />
+  <input id="chID" placeholder="TVG ID" />
+  <input id="chURL" placeholder="Stream URL" />
+
+  <button id="continueAdd" disabled>Continue</button>
+  <div class="summaryBox" id="summaryText"></div>
+  <button id="downloadBtn" disabled>⬇ Download Playlist</button>
+</div>
+
+<!-- DELETE -->
+<div class="card hidden" id="deleteCard">
+  <button class="backBtn" onclick="backModify()">⬅ Back</button>
+  <h2>Delete Channels</h2>
+  <button id="binBtn" disabled>🗑</button>
+
+  <input id="searchBox" placeholder="Search Channel..." />
+  <div id="channelList"></div>
+</div>
+
+ <footer>
+      <a href="https://github.com/V-Dev-arch/M3UZen-Pro-" target="_blank">
+        CONTACT
+      </a>
+    </footer>
+
+<script>
+let playlistText = "";
+let playlistName = "playlist";
+
+let selectedChannels = [];
+let addedChannels = [];
+
+function toast(msg, time=3000) {
+  let t = document.getElementById("toast");
+  t.innerHTML = msg;
+  t.style.display = "block";
+  setTimeout(()=>t.style.display="none", time);
+}
+
+function hideAll() {
+  ["modifyCard","addCard","deleteCard"].forEach(id=>{
+    document.getElementById(id).classList.add("hidden");
+  });
+}
+
+function backModify() {
+  hideAll();
+  modifyCard.classList.remove("hidden");
+}
+
+/* Load Playlist */
+loadBtn.onclick = async () => {
+  let url = playlistURL.value.trim();
+  let file = playlistFile.files[0];
+
+  if (!url && !file) return toast("Please load URL or File!");
+
+  if (file) {
+    playlistName = file.name.replace(".m3u","");
+    playlistText = await file.text();
+  }
+
+  if (url) {
+    toast("URL Loaded → Will convert into file", 4000);
+    playlistName = "url_playlist";
+    let res = await fetch(url);
+    playlistText = await res.text();
+  }
+
+  toast("Playlist Loaded Successfully ✅");
+  readyBtn.classList.remove("hidden");
+};
+
+readyBtn.onclick = () => {
+  homeCard.classList.add("hidden");
+  modifyCard.classList.remove("hidden");
+};
+
+/* ADD */
+function openAdd() {
+  hideAll();
+  addCard.classList.remove("hidden");
+  updateSummary();
+}
+
+function updateSummary() {
+  summaryText.innerHTML =
+    `➕ Added Channels: ${addedChannels.length}<br>`+
+    `🗑 Selected to Delete: ${selectedChannels.length}`;
+}
+
+["chName","chID","chURL"].forEach(id=>{
+  document.getElementById(id).addEventListener("input", ()=>{
+    continueAdd.disabled = !(chName.value && chID.value && chURL.value);
+  });
+});
+
+continueAdd.onclick = () => {
+  addedChannels.push(`#EXTINF:-1 tvg-id="${chID.value}",${chName.value}\n${chURL.value}\n`);
+  toast("Channel Added Successfully ✅");
+  chName.value=""; chID.value=""; chURL.value="";
+  continueAdd.disabled=true;
+  updateSummary();
+  checkDownloadEnable();
+};
+
+/* DELETE */
+function openDelete() {
+  hideAll();
+  deleteCard.classList.remove("hidden");
+  renderChannels();
+  checkDownloadEnable();
+}
+
+function renderChannels() {
+  channelList.innerHTML = "";
+
+  let lines = playlistText.split("\n");
+  let channels = [];
+
+  for (let i=0;i<lines.length;i++) {
+    if (lines[i].startsWith("#EXTINF")) {
+      let name = lines[i].split(",")[1];
+      let link = lines[i+1];
+      channels.push({name,ext:lines[i],url:link});
+    }
+  }
+
+  channels.forEach(ch=>{
+    if (selectedChannels.includes(ch)) return;
+
+    let div = document.createElement("div");
+    div.className="channelItem";
+
+    div.innerHTML = `
+      <span class="checkBox">☐</span>
+      <span>${ch.name}</span>
+    `;
+
+    div.onclick = () => toggleSelect(div,ch);
+    channelList.appendChild(div);
+  });
+
+  searchBox.oninput = () => {
+    let term = searchBox.value.toLowerCase();
+    [...channelList.children].forEach(item=>{
+      item.style.display =
+        item.innerText.toLowerCase().includes(term) ? "flex" : "none";
+    });
+  };
+}
+
+function toggleSelect(div,ch) {
+  let box = div.querySelector(".checkBox");
+
+  if (selectedChannels.includes(ch)) {
+    selectedChannels = selectedChannels.filter(x=>x!==ch);
+    div.classList.remove("selected");
+    box.innerText="☐";
+  } else {
+    selectedChannels.push(ch);
+    div.classList.add("selected");
+    box.innerText="☑";
+  }
+
+  binBtn.disabled = selectedChannels.length===0;
+  updateSummary();
+  checkDownloadEnable();
+}
+
+/* Bin delete */
+binBtn.onclick = () => {
+  if (selectedChannels.length===0) return;
+  if (!confirm(`Are you sure you want to delete ${selectedChannels.length} channels?`)) return;
+
+  // Delete channels from playlist text
+  selectedChannels.forEach(ch=>{
+    playlistText = playlistText.replace(ch.ext+"\n"+ch.url, "");
+  });
+
+  toast("Channels deleted! ✅ Redirecting...", 5000);
+  setTimeout(()=> openAdd(), 5000);
+};
+
+function checkDownloadEnable() {
+  // Download enabled if at least one channel added or one channel selected for deletion
+  downloadBtn.disabled = (addedChannels.length===0 && selectedChannels.length===0);
+}
+
+downloadBtn.onclick = () => {
+  let blob = new Blob([playlistText + "\n" + addedChannels.join("\n")],{type:"text/plain"});
+  let a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = playlistName+"_modified.m3u";
+  a.click();
+  toast('Downloaded! Test in M3U Web Player 🔥<br><a href="https://varinanger.github.io/M3U-WEB-PLAYER/" target="_blank">Click Here</a>', 20000);
+};
+</script>
+
+</body>
+</html>
