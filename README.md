@@ -1,7 +1,7 @@
 Here's an attractive README.md for your M3UZen Pro project:
 
-```markdown
-# 🎬 M3UZen Pro
+
+# M3UZen Pro
 
 <div align="center">
 
