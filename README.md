@@ -217,7 +217,7 @@ Free forever. Use it, modify it, share it. Just give credit where it's due! 🎉
 
 If M3UZen Pro saved you from the Visual Studio playlist nightmare, give us a star! ⭐
 
-[![Star](https://img.shields.io/github/stars/yourusername/M3UZen-Pro?style=social)](https://github.com/yourusername/M3UZen-Pro)
+[![Star](https://img.shields.io/github/stars/V-Dev-arch/M3UZen-Pro-?style=social)](https://github.com/V-Dev-arch/M3UZen-Pro-)
 
 <br>
 
