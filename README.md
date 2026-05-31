@@ -129,14 +129,6 @@ cd M3UZen-Pro
 
 ---
 
-## 🎨 Interface Preview
-
-| Mobile View | Desktop View | TV Mode |
-|:-----------:|:------------:|:-------:|
-| ![Mobile](https://via.placeholder.com/150x300/1a1a2e/00d2ff?text=Mobile) | ![Desktop](https://via.placeholder.com/300x200/1a1a2e/00d2ff?text=Desktop) | ![TV](https://via.placeholder.com/300x200/1a1a2e/00d2ff?text=TV+Mode) |
-
----
-
 ## 🔥 Key Benefits
 
 <div align="center">
