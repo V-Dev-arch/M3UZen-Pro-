@@ -1,4 +1,3 @@
-Here's an attractive README.md for your M3UZen Pro project:
 
 
 # M3UZen Pro
