@@ -100,7 +100,7 @@ Click save → Done! (30 seconds) 🎉
 ## HOW TO USE? 
 
 Just visit https://v-dev-arch.github.io/M3UZen-Pro-/
-and upload your meu file/url and instantly add delete channels
+and upload your m3u file/url and instantly add delete channels
 
 ---
 
