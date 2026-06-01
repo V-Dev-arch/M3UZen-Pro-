@@ -33,7 +33,7 @@
 
 ---
 
-## 🖥️ Desktop & TV Experience
+## 🖥️ Desktop Experience
 
 <div align="center">
 
