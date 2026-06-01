@@ -24,10 +24,8 @@
 
 ## 📱 Mobile Experience
 
-<div align="center">
+<div align="center"><img src="https://files.catbox.moe/xwsib1.jpg" width="209"></div>---
 
-<!-- Replace with your mobile screenshot -->
-![Mobile Screenshot](https://raw.githubusercontent.com/yourusername/M3UZen-Pro/main/assets/mobile-screenshot.png)
 
 *Seamless playlist management on the go*
 
@@ -39,8 +37,8 @@
 
 <div align="center">
 
-<!-- Replace with your desktop/TV screenshot -->
-![Desktop Screenshot](https://raw.githubusercontent.com/yourusername/M3UZen-Pro/main/assets/desktop-screenshot.png)
+<div align="center"><img src="" width="209"></div>---
+
 
 *Powerful editing across all screens*
 
