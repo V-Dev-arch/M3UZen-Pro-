@@ -99,20 +99,10 @@ Click save → Done! (30 seconds) 🎉
 
 ---
 
-## 🛠️ Quick Start
+## HOW TO USE? 
 
-```bash
-# Clone the repository
-git clone https://github.com/yourusername/M3UZen-Pro.git
-
-# Navigate to project folder
-cd M3UZen-Pro
-
-# Open in browser
-# Just open index.html - no dependencies needed!
-```
-
-**That's it!** No npm installs, no build processes. Just pure HTML, CSS, and JavaScript magic.
+Just visit https://v-dev-arch.github.io/M3UZen-Pro-/
+and upload your meu file/url and instantly add delete channels
 
 ---
 
