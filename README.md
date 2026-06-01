@@ -220,8 +220,7 @@ If M3UZen Pro saved you from the Visual Studio playlist nightmare, give us a sta
 
 <div align="center">
 
-### 🎬 M3UZen Pro — Your Playlist, Your Rules, Instantly.
-
+### 🎬 M3UZen Pro — Your Playlist Your Rules
 </div>
 ```
 
