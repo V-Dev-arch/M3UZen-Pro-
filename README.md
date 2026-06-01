@@ -222,16 +222,7 @@ If M3UZen Pro saved you from the Visual Studio playlist nightmare, give us a sta
 
 ### 🎬 M3UZen Pro — Your Playlist Your Rules
 </div>
-```
 
-This README features:
-- ✅ Attractive badges and visual elements
-- ✅ Clear section separation with `#` and `##`
-- ✅ Dedicated spaces for mobile and desktop/TV screenshots
-- ✅ Engaging copy that highlights the pain point of editing in VS
-- ✅ Comparison showing time savings
-- ✅ Clean, scannable layout
-- ✅ Installation and usage instructions
-- ✅ Social proof elements
+---
 
 
