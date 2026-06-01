@@ -12,7 +12,7 @@
 
 <br>
 
-<img src="https://raw.githubusercontent.com/yourusername/M3UZen-Pro/main/assets/logo.png" alt="M3UZen Pro Logo" width="200"/>
+<img src="https://files.catbox.moe/kdywya.png" alt="M3UZen Pro Logo" width="200"/>
 
 ### ⚡ The Ultimate M3U Playlist Editor ⚡
 
